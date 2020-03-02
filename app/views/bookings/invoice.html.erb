@@ -1,0 +1,74 @@
+	<style type="text/css">
+		.tbl-style{width: 100%;}
+		.tbl-style  {border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto;}
+		.tbl-style td{font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+		.tbl-style th{font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}}
+		.text-right{text-align: right;}
+		.col-6{width: 50%;}
+		.col-6{float: left;}
+		@media only screen and (max-width : 1024px) {
+			.col-md-12{width: 100%;}
+		}
+		@media only screen and (max-width : 768px) {
+			.col-sm-12{width: 100%;}
+		}
+		@media only screen and (max-width : 700px) {
+			.col-xs-12{width: 100%;}
+		}
+		.text-middle{text-align: center;}
+	</style>
+
+	<% booking_time, movie_name = find_booking_by_booking_id(params[:booking_id]) %>
+	<% @seats = find_seats_by_booking_id(params[:booking_id]) %>
+
+
+	<section class="" id="invoice">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<h1 style="text-align: center;">Invoice</h1>
+				</div>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-12">
+					<div class="col-6">
+						Movie Name : <h3> <%= movie_name %> </h3>
+					</div>
+					<div class="col-6" style="text-align: right;">
+						Movie Time : <h2> <%= booking_time %> </h2>
+					</div>
+				</div>
+			</div>
+			</br>
+			<div class="row">
+				<div class="col-12">
+					<table class="tbl-style table">
+						<thead>
+							<tr>
+								<th>Sr. No.</th>
+								<th>Seat Numbers</th>
+								<th>Amount</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% counter, price = 0, 0
+							@seats.each do |seat| %>
+							<tr class="text-middle">
+								<td><%= counter = counter+1 %></td>
+								<td><%= seat.seat_no %></td>
+								<td><%= seat.price%></td>
+								<% price = seat.price + price %>
+							</tr>
+							<% end %>
+							<tr class="text-middle">
+								<td colspan="2" style="font-weight: bold;">Amount</td>
+								<td style="font-weight: bold;"><%= price %></td>
+							</tr>
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>

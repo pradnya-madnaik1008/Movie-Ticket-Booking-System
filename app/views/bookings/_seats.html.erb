@@ -1,0 +1,58 @@
+<fieldset> 
+	<legend>Lower - Rs 150/- </legend>
+	<div class="field">
+	<%  counter = 0 %>
+	<% for i in 1..30 %>
+		<span>
+			<span style="position: relative;left: 40px;bottom: 20px;"> <%= i %> </span>
+			<input type="checkbox" name="booking[selected_seats][150][]" value="<%= i %>" class="selected_seats_150_<%= i %>" style="height: 50px;width: 50px"/>
+		</span>
+		<%  counter = counter + 1 %>
+		<% if counter == 10 %>
+		<br>
+		<% counter = 0 %>
+		<% end %>
+	<% end %>
+	</div>
+</fieldset></br>
+
+<fieldset> 
+	<legend>Middle - Rs 200/-</legend>
+	<div class="field">
+	<% for i in 31..70 %>
+		<span >
+			<span style="position: relative;left: 40px;bottom: 20px;"> <%= i %> </span>
+			<input type="checkbox" name="booking[selected_seats][200][]" value="<%= i %>" class="selected_seats_200_<%= i %>" style="height: 50px;width: 50px"/>
+		</span>
+		<%  counter = counter + 1 %>
+		<% if counter == 10 %>
+		<br>
+		<% counter = 0 %>
+		<% end %>
+	<% end %>
+	</div>
+</fieldset></br>
+
+<fieldset> 
+	<legend>Upper - Rs 300/-</legend>
+	<div class="field">
+	<% for i in 71..100 %>
+		<span style="">
+			<span style="position: relative;left: 40px;bottom: 20px;"> <%= i %> </span>
+			<input type="checkbox" name="booking[selected_seats][300][]" value="<%= i %>" class="selected_seats_300_<%= i %>" style="height: 50px;width: 50px">
+		</span>
+		<%  counter = counter + 1 %>
+		<% if counter == 10 %>
+		<br>
+		<% counter = 0 %>
+		<% end %>
+	<% end %>
+	</div>
+</fieldset>
+
+<% @booked_seats.each do |seat| %>
+<script type="text/javascript">
+	$('.selected_seats_<%= seat.price %>_<%= seat.seat_no %>').prop("disabled", true);
+	$('.selected_seats_<%= seat.price %>_<%= seat.seat_no %>').parent().addClass("redBackground");
+</script>
+<% end %>

@@ -1,0 +1,58 @@
+<style type="text/css">
+	.redBackground{
+	/*background-color:red;*/
+	}
+	.greenBackground{
+		/*background-color:red;*/
+	}
+</style>
+
+  <% if @movie.present? %>
+  	<h1><span class="label label-info">Selected Movie: <%= @movie.name %> </span></h1>
+  	<% else %>
+  	<h1>No Movie Found</h1>
+  <% end %>
+
+<%= form_for @booking, url: bookings_create_path, method: :post do |form| %>
+  <%= hidden_field_tag "booking[movie_id]", params[:movie_id] %>
+
+  <div class="field">
+    <%= form.label :timeslot %>
+     <%= form.select(:timeslot, [['Select', ''], [ "12-3"], ["4-7"], ["8-11"]]) %>
+  </div>
+
+  <div class="field">
+	<div id="seats"></div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit :class=> "submit-btn btn btn-md btn-success"%>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+	$(".submit-btn").attr('disabled', 'disabled');
+	$(function() {
+		$("#booking_timeslot").change(function() {
+			console.log($(this).val())
+			var timeslot = $(this).val();
+			var movie_id = $("#booking_movie_id").val();
+			if(timeslot != ''){
+				$("#seats").show()
+				$(".submit-btn").removeAttr('disabled');
+				$.ajax({
+				    method: "GET",
+					url: "/show_booked_seats",
+					data: {timeslot: timeslot, movie_id: movie_id},
+				    success: function (data,status,xhr) {   // success callback function
+				    },
+				    error: function (jqXhr, textStatus, errorMessage) { // error callback 
+				    }
+				});
+			}else{
+				$("#seats").hide();
+				$(".submit-btn").attr('disabled', 'disabled')
+			}
+		});
+	});
+</script>

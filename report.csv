@@ -1,0 +1,12 @@
+Movie Name,Time Slot,Seat No,Seat Price,Create Date,Updated Date
+Mission Impossible,12-3,77,300,2020-03-01 15:10:25 UTC,2020-03-01 15:10:25 UTC
+Mission Impossible,12-3,43,200,2020-03-01 15:10:58 UTC,2020-03-01 15:10:58 UTC
+Mission Impossible,12-3,55,200,2020-03-01 15:10:58 UTC,2020-03-01 15:10:58 UTC
+Mission Impossible,12-3,86,300,2020-03-01 15:10:58 UTC,2020-03-01 15:10:58 UTC
+
+Seats ,Total Seats,Total Price,"","",""
+Seats Booked for 150 ,0,0,"","",""
+Seats Booked for 200 ,2,400,"","",""
+Seats Booked for 300 ,2,600,"","",""
+Total Seats Booked ,4,"","","",""
+"",Total Collection,1000,"","",""

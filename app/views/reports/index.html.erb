@@ -1,0 +1,18 @@
+<%= form_tag('/export_report') do -%>
+	  <div class="field">
+	  	<%= label_tag "Movie Name : " %>
+	  	<%= select_tag "movie_id", options_for_select(Movie.all.collect {|p| [ p.name, p.id ]}) %>
+	  </div>
+
+	  <div class="field">
+	  	<%= label_tag "Time Slot : " %>
+	  	<%= select_tag "timeslot", options_for_select([['Select', ''], [ "12-3"], ["4-7"], ["8-11"]]) %>
+	  </div>
+
+	  <div class="field">
+	  	<%= label_tag "Date : " %>
+	  	<input type="date" name="create_at">
+	  </div>
+
+   <%= submit_tag( "Export" , class: 'btn btn-md btn-warning') %>
+<% end %>

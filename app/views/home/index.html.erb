@@ -1,0 +1,16 @@
+<table class="table">
+	<thead>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Action</th>
+	</thead>
+	<% @movies.each do |movie|  %>
+	<tbody>
+		<tr>
+			<td><%= movie.name %></td>
+			<td><%= movie.description %></td>
+			<td><%= link_to "Book Movie", booking_home_path(movie.id), class: 'btn btn-md btn-warning' %></td>
+		</tr>
+	</tbody>
+	<% end %>
+</table>
